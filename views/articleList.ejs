@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Articles - ManusBlog</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('navbar') %>
+  
+  <div class="container">
+    <h1>All Articles</h1>
+    <% if (articles.length === 0) { %>
+      <div class="card">
+        <p>No articles found. <a href="/articles/new">Be the first to write one!</a></p>
+      </div>
+    <% } %>
+    
+    <% articles.forEach(article => { %>
+      <div class="card article-card">
+        <h2><a href="/articles/view/<%= article._id %>" style="text-decoration: none; color: inherit;"><%= article.title %></a></h2>
+        <div class="article-meta">
+          By <%= article.author.username %> on <%= article.createdAt.toDateString() %>
+        </div>
+        <p><%= article.content.substring(0, 150) %>...</p>
+        <a href="/articles/view/<%= article._id %>" class="btn btn-primary">Read More</a>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>

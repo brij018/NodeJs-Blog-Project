@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Articles - ManusBlog</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('navbar') %>
+  
+  <div class="container">
+    <h1>My Articles</h1>
+    <% if (articles.length === 0) { %>
+      <div class="card">
+        <p>You haven't written any articles yet. <a href="/articles/new">Write your first article!</a></p>
+      </div>
+    <% } %>
+    
+    <% articles.forEach(article => { %>
+      <div class="card article-card">
+        <h2><%= article.title %></h2>
+        <div class="article-meta">
+          Created on <%= article.createdAt.toDateString() %>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <a href="/articles/view/<%= article._id %>" class="btn btn-primary">View</a>
+          <a href="/articles/edit/<%= article._id %>" class="btn btn-primary" style="background-color: #f39c12;">Edit</a>
+          <form action="/articles/delete/<%= article._id %>" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure?')">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>

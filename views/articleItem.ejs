@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= article.title %> - ManusBlog</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('navbar') %>
+  
+  <div class="container">
+    <div class="card">
+      <h1><%= article.title %></h1>
+      <div class="article-meta">
+        By <%= article.author.username %> on <%= article.createdAt.toDateString() %>
+      </div>
+      <div class="article-content" style="white-space: pre-wrap; margin-bottom: 30px;">
+        <%= article.content %>
+      </div>
+      
+      <% if (user && (user._id.toString() === article.author._id.toString() || user.role === 'admin')) { %>
+        <div style="margin-bottom: 20px;">
+          <a href="/articles/edit/<%= article._id %>" class="btn btn-primary" style="background-color: #f39c12;">Edit</a>
+          <form action="/articles/delete/<%= article._id %>" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure?')">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      <% } %>
+      
+      <hr>
+      
+      <h3>Comments</h3>
+      <div class="comments-section">
+        <% if (article.comments.length === 0) { %>
+          <p>No comments yet.</p>
+        <% } %>
+        
+        <% article.comments.forEach(comment => { %>
+          <div class="comment">
+            <div class="comment-author"><%= comment.author.username %></div>
+            <div class="comment-date"><%= comment.createdAt.toLocaleString() %></div>
+            <p><%= comment.text %></p>
+            <% if (user && (user._id.toString() === comment.author._id.toString() || user.role === 'admin')) { %>
+              <form action="/comments/delete/<%= comment._id %>" method="POST" style="display: inline;">
+                <button type="submit" class="btn btn-danger" style="padding: 2px 8px; font-size: 0.7rem;">Delete</button>
+              </form>
+            <% } %>
+          </div>
+        <% }) %>
+      </div>
+      
+      <div class="add-comment" style="margin-top: 30px;">
+        <h4>Add a Comment</h4>
+        <form action="/comments" method="POST">
+          <input type="hidden" name="articleId" value="<%= article._id %>">
+          <div class="form-group">
+            <textarea name="text" style="height: 80px;" placeholder="Write your comment here..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Post Comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

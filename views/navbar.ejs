@@ -1,0 +1,16 @@
+<nav>
+  <div class="nav-container">
+    <a href="/articles" class="nav-logo">ManusBlog</a>
+    <ul class="nav-links">
+      <% if (user) { %>
+        <li><a href="/articles">All Articles</a></li>
+        <li><a href="/articles/my">My Articles</a></li>
+        <li><a href="/articles/new">New Article</a></li>
+        <li><a href="/logout">Logout (<%= user.username %>)</a></li>
+      <% } else { %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      <% } %>
+    </ul>
+  </div>
+</nav>
