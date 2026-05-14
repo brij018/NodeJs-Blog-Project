@@ -198,6 +198,22 @@ If you like this project, consider giving it a ⭐ on GitHub.
 
 ---
 
+Screenshots:
+-LogIn
+<img width="1913" height="966" alt="image" src="https://github.com/user-attachments/assets/de7a7f69-ba8b-4e64-9e3e-fe46d540ffe7" />
+
+-articles
+<img width="1919" height="917" alt="image" src="https://github.com/user-attachments/assets/dc41d83a-ea31-49f2-b606-9bf24bb08731" />
+
+-MyArticle
+<img width="1919" height="915" alt="image" src="https://github.com/user-attachments/assets/8447dec1-1386-4310-92f6-0a5ba9189195" />
+
+-NewArticle
+<img width="1919" height="915" alt="image" src="https://github.com/user-attachments/assets/8d3c221d-f720-48c0-a82b-f07e579f5b7e" />
+
+
+---
+
 # 📜 License
 
 This project is licensed under the MIT License.﻿
